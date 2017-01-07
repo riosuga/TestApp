@@ -1,0 +1,53 @@
+<?php
+	//panggil fugnsi wsdl
+	$url = "http://localhost:9090/skdsdksldks?wsdl";
+	// $client = new SoapClient($url);
+
+	//open koneksi
+	// $header = new SoapHeader("http://localhost:9090/skdsdksldks?wsdl");
+	
+	// $params = array("edinumber"=>"EXP024100038"); //isi parameter fungsi dari service nya harus diaray, apabila ada variabel bersifat aray ya maka diaray kan lagi
+
+	// $respon = $client->__soapCall("hello",array($params)); //eksekusi program
+	// $respon = $client->__soapCall("cariPendaftaran",$params);
+	// $respon = $client->__soapCall("testArray",array(null));	
+
+	// $option = array("trace"=>true);
+	// $client = new SoapClient($url, $option);
+	// $functions = $client->__getFunctions();
+	// $client->cariPendaftaran($params);
+	// $respon = $client->__call("cariPendaftaran",$params);
+	// $array = json_decode(json_encode($respon),true);
+
+	// var_dump($respon);
+	
+	// $array = json_decode(json_encode($respon), true);
+
+	$client = new SoapClient($url);
+	$list  = $client->__getFunctions();
+	// $params = array('idPilot'=>'EXP024100038','nama'=>'yeyeyeyeye','kdPilot'=>'N','kdKantor'=>'900900');
+	// $hasil = $client->insertPendaftaranManualxxxxx($params);
+
+	$hasil = $client->kirimUlangxxxxx(array('ediNumber'=>'00000000285020160929000051','jnsRespon'=>'010','seqRespon'=>'16040302510682'));
+	// $hasil = $client->cariPendaftaran(array('edinumber'=>'EXP024100038'));
+	// $hasil = $client->cariProses(array('car'=>'00000000132120121128007167'));
+	// $hasil = $client->cariResponImpor(array('car'=>'00000001044020120409000174'));
+	$hasil = json_decode(json_encode($hasil),true);  //cara gampang jadiin array tanpa std
+	// var_dump($hasil);
+	// if(empty($hasil)){
+	// 	echo 'Array kosong, atau char tidak ditemukan<br/>';
+	// }
+	
+	foreach($hasil as $hasil2){
+	// 	// var_dump($hasil2);
+		// var_dump($hasil2);
+		var_dump($hasil2);
+	// 	foreach($hasil2 as $hasil3){
+	// 		// var_dump($hasil3);
+	// 		echo $hasil3['car']."<br/>";
+	// 		echo $hasil3['kdKantor']."<br/>";
+	// 		echo $hasil3['jnsRespon']."<br/>";
+	// 		echo $hasil3['namaPar']."<br/>";
+	// 	}
+	}
+?>

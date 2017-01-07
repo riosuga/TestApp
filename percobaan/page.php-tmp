@@ -1,0 +1,14 @@
+
+Warning: Module 'oci8' already loaded in Unknown on line 0
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "test";
+$con  = mysqli_connect($host, $user, $pass, $db);
+
+if (!$con) {
+	die("failed".mysqli_connect_error());
+}
+echo "yey";
+?>

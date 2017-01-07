@@ -1,0 +1,64 @@
+<?php 
+	$connectionProduction =  oci_connect('xxxxx','skdsdksldks120xxxxx','172.0.0.124:9999/skdsdksldks');
+	$connectionDevelopments =  oci_connect('xxxxx','xxxxx','172.0.0.53:9999/xxxxx');
+
+	$queryProduction = "ted ntar";
+	$queryDevelopments = "tet ntar";
+
+
+	// $connPro = oci_
+	// $connDev = oci_
+
+
+	if(!$connectionProduction){
+		$e = oci_error();
+		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+	}else{
+		echo "naisu 1<br/>";
+	}
+
+	if(!$connectionDevelopments){
+		$e = oci_error();
+		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+	}else{
+		echo "naisu 2<br/>";
+	}
+
+
+	$cardata = array("00000000235720130311001293","00000000235720130311001294");
+	var_dump($cardata);
+
+	for($i=0; $i<count($cardata); $i++){
+		$stid = oci_parse($connectionProduction, 'SELECT car,kd_status FROM dbxxxxx.tep_peb_proses WHERE car IN(:kd_status'.$i.')');
+		for($j=0; $j<count($cardata); $j++){
+			$dataPecah = $cardata;
+			oci_bind_by_name($stid,":kd_status".$i."",$dataPecah[$i]);
+		}
+	}
+	// $stid = oci_parse($connectionProduction, 'SELECT car,kd_status FROM dbxxxxx.tep_peb_proses WHERE car IN(:kd_status1)');
+	// oci_bind_by_name($stid, ":kd_status1",$cardata);
+	// oci_bind_array_by_name($stid, ":kd_status1", $cardata, 2,-1, SQLT_CHR);
+	oci_execute($stid);
+
+
+	$jumalhKolom = oci_num_fields($stid);
+	echo "<table border='1'>\n";
+	echo "<tr>\n";
+		for($i= 1; $i<= $jumalhKolom; $i++){
+			$namaKolom = oci_field_name($stid,$i);
+			$typeField = oci_field_type($stid,$i);
+			echo "<td>".$namaKolom."</td>\n";
+			// echo "<td>".$typeField."</td>\n";
+
+		}
+	echo "</tr>\n";
+	while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+		// var_dump($row);
+		echo "<tr>\n";
+		foreach ($row as $rows) {
+			echo "	<td>".($rows !== null?htmlentities($rows, ENT_QUOTES):"&nbsp;")."</td>\n";
+		}
+		echo "</tr>\n";
+	}
+	echo "</table>\n";
+ ?>

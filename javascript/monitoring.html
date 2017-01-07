@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	// do magic here
+	$(document).ready(function(){
+		setInterval(function(){
+			$("#table-xxxxx").load('autoload.php')
+		},1000);
+		setInterval(function(){
+			$("#table-impor").load('autoload2.php')
+		},1000);
+	});
+	// $(document).ready(function(){
+	// 	$("#table-xxxxx").load('autoload.php');
+	// });
+</script>
+	<title>Montirong then sleep</title>
+</head>
+<body>
+	<div style="padding: 5px;">
+	<h1>INI xxxxx</h1>
+		<div id="table-xxxxx">
+			<!-- its magic -->
+		</div>
+	<h1>INI IMPOR</h1>
+		<div id="table-impor">
+							
+			<!-- its magic -->
+		</div>
+	</div>
+</body>
+</html>

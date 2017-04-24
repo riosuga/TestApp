@@ -14,4 +14,8 @@
 		echo '<br>';
 		echo 'huu';
 	}
+
+	$string = 'Z';
+	$string++;
+	echo $string;
  ?>

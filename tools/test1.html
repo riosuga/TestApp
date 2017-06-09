@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="">
+<head>
+<script type="text/javascript" src="D:\Web\htdocs\Archive\assets\jquery\jquery-2.1.4.min.js"></script>
+	<title></title>
+</head>
+<body>
+<input type="text" id="nama">
+<input type="text" id="status">
+</body>
+
+
+<script type="text/javascript">
+ function lalala(){
+  var nama;
+  $.ajax({
+    type:'POST',
+    url: 'http://10.102.103.66:13130/',
+    data : 'name=juandi',
+    dataType :'JSON',
+    async : true,
+    success: function(data){
+      alert(data);
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+    	alert('jqXHR : ' + jqXHR+' textStatus : '+textStatus+' error thrown '+errorThrown);
+
+    },
+    done: function(data){
+      alert('alhamdulillah'+data);
+    }
+  });
+ }
+
+ lalala();
+
+ // $.get('http://10.102.103.66:13130',{nama:'juandi',pekerjaan :'cs'}).done(function (data){
+ //  alert('data' +data.name);
+ // });
+ 
+</script>
+</html>
